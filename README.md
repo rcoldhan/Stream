@@ -6,7 +6,7 @@
 public class Boy {
     private String name;
     private int age;
-    Person(final String name, final int age) {
+    Boy(final String name, final int age) {
         this.name = name;
         this.age = age;
     }
