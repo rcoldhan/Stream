@@ -3,7 +3,6 @@ package com.company;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Boy {
     private final String name;
@@ -59,7 +58,6 @@ public class Boy {
                 .distinct()
                 .sorted()
                 .limit(4)
-                .collect(Collectors.toList())
                 .forEach(k -> filteredBoys.put(k, 0));
 
         filteredBoys.replaceAll((k, v) -> duplicates.get(k)); //заменила v на кол-во тезок
