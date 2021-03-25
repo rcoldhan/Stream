@@ -41,7 +41,7 @@ public class Boy {
             add(new Boy("Михаил", 1));
             add(new Boy("Яков", 30));
         }};
-        //считаю тезок
+        //считаю тезок и заношу в map(имя, кол-во тезок)
         Map<String, Integer> duplicates = new HashMap<>();
         boys.stream().
                 forEach(boy -> {
@@ -59,9 +59,7 @@ public class Boy {
                 .distinct()
                 .sorted()
                 .limit(4)
-                .forEach(k -> filteredBoys.put(k, 0));
-
-        filteredBoys.replaceAll((k, v) -> duplicates.get(k)); //заменила v на кол-во тезок
+                .forEach(k -> filteredBoys.put(k, duplicates.get(k)));
         System.out.println(filteredBoys);
     }
 }
