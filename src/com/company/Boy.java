@@ -43,13 +43,13 @@ public class Boy {
         }};
         //считаю тезок
         Map<String, Integer> duplicates = new HashMap<>();
-        for (Boy boy : boys) {
-            if (duplicates.containsKey(boy.getName())) {
-                duplicates.put(boy.getName(), duplicates.get(boy.getName()) + 1);
-            } else {
-                duplicates.put(boy.getName(), 0);
-            }
-        }
+        boys.forEach(boy -> {
+                    if (duplicates.containsKey(boy.getName())) {
+                        duplicates.put(boy.getName(), duplicates.get(boy.getName()) + 1);
+                    } else {
+                        duplicates.put(boy.getName(), 0);
+                    }
+                });
 
         Map<String, Integer> filteredBoys = new HashMap<>();
         boys.stream()
