@@ -1,10 +1,9 @@
 package com.company;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toCollection;
 
 public class Boy {
     private final String name;
@@ -53,17 +52,17 @@ public class Boy {
             }
         }
 
-        List<Boy> filtered = boys.stream()
-                .sorted(Comparator.comparing(Boy::getName)) //по алфавиту
-                .filter(x -> x.getAge() >= 18) //18+
-                .collect(collectingAndThen(toCollection(() -> new TreeSet<>(Comparator.comparing(Boy::getName))),
-                        ArrayList::new)); //убрала дубли
+        Map<String, Integer> filteredBoys = new HashMap<>();
+        boys.stream()
+                .filter(boy -> boy.getAge() >= 18)
+                .map(Boy::getName)
+                .distinct()
+                .sorted()
+                .limit(4)
+                .collect(Collectors.toList())
+                .forEach(k -> filteredBoys.put(k, 0));
 
-        Map<String, Integer> filteredBoys = filtered.stream()
-                .limit(4) //оставила 4
-                .collect(Collectors.toMap(Boy::getName, Boy::getAge)); //собрала map
-
-        filteredBoys.replaceAll((k, v) -> duplicates.get(k)); //заменила возраст на кол-во тезок
-        System.out.println("FINAL: " + filteredBoys);
+        filteredBoys.replaceAll((k, v) -> duplicates.get(k)); //заменила v на кол-во тезок
+        System.out.println(filteredBoys);
     }
 }

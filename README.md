@@ -4,8 +4,8 @@
 ##### Класс "Мальчик"
 ```java
 public class Boy {
-    private String name;
-    private int age;
+    private final String name;
+    private final int age;
     Boy(final String name, final int age) {
         this.name = name;
         this.age = age;
