@@ -43,7 +43,7 @@ public class Boy {
         }};
         //считаю тезок
         Map<String, Integer> duplicates = new HashMap<>();
-        boys.stream().//здесь idea предлагала заменить stream().forEach() на .forEach()
+        boys.stream().
                 forEach(boy -> {
                     if (duplicates.containsKey(boy.getName())) {
                         duplicates.put(boy.getName(), duplicates.get(boy.getName()) + 1);
